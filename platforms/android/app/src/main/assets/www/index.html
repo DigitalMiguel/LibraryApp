@@ -1,85 +1,154 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-        <title>Library App</title>
-    </head>
+<head>
+  <link rel="stylesheet" type="text/css" href="onsen-css/onsenui.css">
+  <link rel="stylesheet" type="text/css" href="onsen-css/onsen-css-components.min.css">
+  <script src="onsen-js/onsenui.min.js"></script>
 
-    <body>
-        <div class="wrapper">
+  <script>
+    window.fn = {};
 
-            <div class="header">
+    // Slides out the side menu
+    window.fn.open = function() {
+      var menu = document.getElementById('menu');
+      menu.open();
+    };
 
-                <div class="menu-button">
+    // Loads page from menu
+    window.fn.load = function(page){
+      var content = document.getElementById('content');
+      var menu = document.getElementById('menu');
 
-                </div>
+      content.load(page).then(menu.close.bind(menu));
 
-                <div class="header-text">
+    };
 
-                </div>
+  </script>
 
-                <div class="search-button">
+</head>
+  <body>
+    <ons-splitter>
+      <ons-splitter-side id = "menu" side = "left" width = "220px" collapse swipeable>
+        <ons-page>
+          <ons-list>
 
-                </div>
+            <ons-list-item onclick="fn.load('home.html')" tappable>
+              Home
+            </ons-list-item>
 
+            <ons-list-item onclick="fn.load('resources.html')" tappable>
+              Resources
+            </ons-list-item>
+
+            <ons-list-item>
+              Library ID
+            </ons-list-item>
+
+            <ons-list-item>
+              About
+            </ons-list-item>
+
+          </ons-list>
+        </ons-page>
+      </ons-splitter-side>
+
+      <ons-splitter-content id="content" page="home.html" ></ons-splitter-content>
+
+    </ons-splitter>
+
+    <template id="home.html">
+      <ons-page>
+        <ons-toolbar>
+          <div class="left">
+            <ons-toolbar-button onclick="fn.open()">
+              <ons-icon icon="md-menu"></ons-icon>
+            </ons-toolbar-button>
+          </div>
+          <div class="center">
+            Salinas Library App
+          </div>
+          <div class="right">
+
+          </div>
+        </ons-toolbar>
+      </ons-page>
+    </template>
+
+    <template id="resources.html">
+      <ons-page>
+        <ons-toolbar>
+          <div class="left">
+            <ons-toolbar-button onclick="fn.open()">
+              <ons-icon icon="md-menu"></ons-icon>
+            </ons-toolbar-button>
+          </div>
+          <div class="center">
+            Resources
+          </div>
+          <div class="right">
+          </div>
+        </ons-toolbar>
+
+        <!-- CONTENT START -->
+
+        <div class="" style="height: 200px; padding: 1px 0 0 0;">
+          <div class="card card--material">
+            <div class="card__title card--material__title">
+              AHHHH!!
             </div>
-
-            <div class="home-image">
+            <img src="images/screamo.jpg" alt="Onsen UI" width="100%" />
+            <div class="card__content card--material__content">
+              Local man yelling in Library this Friday. Tickets available for locals only. Bring food to share and to throw at him.
             </div>
+          </div>
 
-            <div class="home-text">
-
+          <div class="card card--material">
+            <div class="card__title card--material__title">
+              AHHHH!!
             </div>
-
-            <div class="footer">
-
-                <div class="profile-button">
-
-                </div>
-
-                <div class="home-button">
-
-                </div>
-
-                <div class="config-button">
-
-                </div>
-
+            <img src="images/screamo.jpg" alt="Onsen UI" width="100%" />
+            <div class="card__content card--material__content">
+              Local man yelling in Library this Friday. Tickets available for locals only. Bring food to share and to throw at him.
             </div>
+          </div>
 
-      </div>
+          <div class="card card--material">
+            <div class="card__title card--material__title">
+              AHHHH!!
+            </div>
+            <img src="images/screamo.jpg" alt="Onsen UI" width="100%" />
+            <div class="card__content card--material__content">
+              Local man yelling in Library this Friday. Tickets available for locals only. Bring food to share and to throw at him.
+            </div>
+          </div>
 
-    </body>
+          <div class="card card--material">
+            <div class="card__title card--material__title">
+              AHHHH!!
+            </div>
+            <img src="images/screamo.jpg" alt="Onsen UI" width="100%" />
+            <div class="card__content card--material__content">
+              Local man yelling in Library this Friday. Tickets available for locals only. Bring food to share and to throw at him.
+            </div>
+          </div>
 
+          <div class="card card--material">
+            <div class="card__title card--material__title">
+              AHHHH!!
+            </div>
+            <img src="images/screamo.jpg" alt="Onsen UI" width="100%" />
+            <div class="card__content card--material__content">
+              Local man yelling in Library this Friday. Tickets available for locals only. Bring food to share and to throw at him.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- CONTENT FINISH -->
+
+      </ons-page>
+    </template>
+
+
+  </body>
 </html>
