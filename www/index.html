@@ -52,6 +52,21 @@
 
     };
 
+    // For scanning
+    window.fn.scan = function(){
+      cordova.plugins.barcodeScanner.scan(
+        function (result) {
+            alert("We got a barcode\n" +
+                  "Result: " + result.text + "\n" +
+                  "Format: " + result.format + "\n" +
+                  "Cancelled: " + result.cancelled);
+        },
+        function (error) {
+            alert("Scanning failed: " + error);
+        }
+      );
+    };
+
   </script>
 
 </head>
@@ -278,22 +293,13 @@
 
     <template id="scanner.html">
       <ons-page>
-        <script>
-          // For scanning
-          function(){
-            cordova.plugins.barcodeScanner.scan(
-              function (result) {
-                  alert("We got a barcode\n" +
-                        "Result: " + result.text + "\n" +
-                        "Format: " + result.format + "\n" +
-                        "Cancelled: " + result.cancelled);
-              },
-              function (error) {
-                  alert("Scanning failed: " + error);
-              }
-            );
-          };
-        </script>
+        <div style="text-align: center; margin-top: 30px;">
+
+          <p style="margin-top: 30px;">
+            <ons-button onclick="fn.scan()">Scan</ons-button>
+          </p>
+
+        </div>
       </ons-page>
     </template>
 
