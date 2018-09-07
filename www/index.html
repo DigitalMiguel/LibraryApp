@@ -52,7 +52,6 @@
 
     };
 
-
   </script>
 
 </head>
@@ -80,6 +79,10 @@
 
             <ons-list-item onclick="fn.load('volunteering-opportunities.html')" tappable>
               Volunteering
+            </ons-list-item>
+
+            <ons-list-item onclick="fn.load('scanner.html')" tappable>
+              Scanner
             </ons-list-item>
 
             <ons-list-item>
@@ -269,6 +272,28 @@
         </div>
 
 
+      </ons-page>
+    </template>
+
+
+    <template id="scanner.html">
+      <ons-page>
+        <script>
+          // For scanning
+          window.fn.scan = function(){
+            cordova.plugins.barcodeScanner.scan(
+              function (result) {
+                  alert("We got a barcode\n" +
+                        "Result: " + result.text + "\n" +
+                        "Format: " + result.format + "\n" +
+                        "Cancelled: " + result.cancelled);
+              },
+              function (error) {
+                  alert("Scanning failed: " + error);
+              }
+            );
+          };
+        </script>
       </ons-page>
     </template>
 
