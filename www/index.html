@@ -33,8 +33,6 @@
 
       var userId = document.getElementById('id-number').value;
 
-
-
       storage.setItem("userId", userId) // Pass a key name and its value to add or update that key.
 
 
@@ -43,9 +41,9 @@
 
     window.fn.display = function(){
 
-      var userId = storage.getItem("userId");
+      var storedId = storage.getItem("userId");
 
-      JsBarcode("#barcode", userId, {
+      JsBarcode("#barcode", storedId, {
         format: "codabar",
         lineColor: "#000",
       });
@@ -127,6 +125,31 @@
 
           </div>
         </ons-toolbar>
+
+        <!-- Library ID -->
+        <div class="" style="height: 200px; padding: 1px 0 0 0;">
+          <div class="card card--material" style=" text-align: center; ">
+            <div class="card__title card--material__title">
+              Library ID
+            </div>
+            <svg id="home-digital-id"> </svg>
+
+            <script>
+              if( storage.getItem("userId") != null ){
+                var storedId = storage.getItem("userId");
+
+                JsBarcode("#home-digital-id", storedId, {
+                  format: "codabar",
+                  lineColor: "#000",
+                });
+
+              }
+            </script>
+
+          </div>
+
+        </div>
+
       </ons-page>
     </template>
 
@@ -262,7 +285,7 @@
             </ons-toolbar-button>
           </div>
           <div class="center">
-            Online Resources
+            Digital ID
           </div>
           <div class="right">
 
