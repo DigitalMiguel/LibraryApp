@@ -71,13 +71,15 @@
 
   </script>
 
+
+
   <script>
 
-  var name = "codemzy";
-  var url = "http://anyorigin.com/go?url=" + encodeURIComponent("https://www.codewars.com/users/") + name + "&callback=?";
-  $.get(url, function(response) {
-    console.log(response);
-  });
+
+
+
+
+
 
   </script>
 
@@ -159,8 +161,19 @@
 
               }
             </script>
-
           </div>
+
+          <p id="test-scrape"></p>
+
+          <script>
+            var name = "codemzy";
+            var url = "http://anyorigin.com/go?url=" + encodeURIComponent("https://www.codewars.com/users/") + name + "&callback=?";
+            $.get(url, function(response) {
+              document.getElementById("test-scrape").innerHTML = response;
+
+            });
+
+          </script>
 
         </div>
 
