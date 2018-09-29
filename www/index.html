@@ -149,24 +149,27 @@
             </script>
           </div>
 
-          <button id="openBrowser">Browser</button>
+          <p id="browserStuff">hmmm</p>
+
           <script>
 
-          var win = window.open( "http://www.salinaspubliclibrary.org/calendar/month?field_audience_tid=389&field_location_tid=All", "_blank", "location=yes,hidden=yes" );
-          // win.addEventListener( "loadstop", function() {
-          //   win.executeScript(
-          //       { code: "document.body.innerHTML" },
-          //       function( values ) {
-          //           alert( values[ 0 ] );
-          //       }
-          //   );
+          var win = cordova.InAppBrowser.open( "http://www.salinaspubliclibrary.org/calendar/month?field_audience_tid=389&field_location_tid=All", "_blank","location=yes" );
+          win.addEventListener( "loadstop", function() {
+            win.executeScript(
+              {code: "document.getElementsByTagName('html')[0].innerHTML"}, function(html) {
+                document.getElementById('browserStuff').innerHTML = html;
+              });
+            win.close();
+          });
+
+          // var inAppRef = cordova.InAppBrowser.open("http://apache.org", "_blank", "location=yes");
+          // inAppRef.addEventListener("loadstop", function() {
+          //   inAppRef.executeScript({
+          //     code: "document.getElementsByTagName("html")[0].innerHTML"
+          //   }, function(html) {
+          //     alert(html);
+          //   });
           // });
-          // function loadStopCallBack() {
-          //
-          //     inAppBrowserRef.show();
-          // }
-          // addEventListener('loadstop', loadStopCallBack);
-          //
 
 
           </script>
@@ -296,10 +299,7 @@
             </div>
           </div>
         </ons-card>
-        <script>
-        window.open('https://google.com', '_self ', 'location=yes');
 
-        </script>
       </ons-page>
     </template>
 
