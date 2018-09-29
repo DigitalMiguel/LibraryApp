@@ -152,18 +152,21 @@
           <button id="openBrowser">Browser</button>
           <script>
 
-            // var name = "codemzy";
-            // var url = "http://anyorigin.com/go?url=" + encodeURIComponent("https://www.codewars.com/users/") + name + "&callback=?";
-            // $.get(url, function(response) {
-            //   document.getElementById("test-scrape").innerHTML = response;
-            //
-            // });
+          var win = window.open( "http://icenium.com", "_blank", "EnableViewPortScale=yes" );
+          win.addEventListener( "loadstop", function() {
+            win.executeScript(
+                { code: "document.body.innerHTML" },
+                function( values ) {
+                    alert( values[ 0 ] );
+                }
+            );
+          });
 
           </script>
 
         </div>
         <script type="text/javascript" src="js/index.js"></script>
-        
+
       </ons-page>
     </template>
 
