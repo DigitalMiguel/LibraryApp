@@ -152,15 +152,22 @@
           <button id="openBrowser">Browser</button>
           <script>
 
-          var win = window.open( "http://icenium.com", "_blank", "EnableViewPortScale=yes" );
-          win.addEventListener( "loadstop", function() {
-            win.executeScript(
-                { code: "document.body.innerHTML" },
-                function( values ) {
-                    alert( values[ 0 ] );
-                }
-            );
-          });
+          var win = window.open( "http://www.salinaspubliclibrary.org/calendar/month?field_audience_tid=389&field_location_tid=All", "_blank", "location=yes,hidden=yes" );
+          // win.addEventListener( "loadstop", function() {
+          //   win.executeScript(
+          //       { code: "document.body.innerHTML" },
+          //       function( values ) {
+          //           alert( values[ 0 ] );
+          //       }
+          //   );
+          // });
+          function loadStopCallBack() {
+
+              inAppBrowserRef.show();
+          }
+          addEventListener('loadstop', loadStopCallBack);
+
+
 
           </script>
 
