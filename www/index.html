@@ -7,6 +7,10 @@
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="onsen-js/onsenui.min.js"></script>
   <script src="js/JsBarcode.all.min.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+  <script src="js/index.js"></script>
+
+
 
   <script>
     window.fn = {};
@@ -152,25 +156,46 @@
           <p id="browserStuff">hmmm</p>
 
           <script>
-
-          var win = cordova.InAppBrowser.open( "http://www.salinaspubliclibrary.org/calendar/month?field_audience_tid=389&field_location_tid=All", "_blank","location=yes" );
-          win.addEventListener( "loadstop", function() {
-            win.executeScript(
-              {code: "document.getElementsByTagName('html')[0].innerHTML"}, function(html) {
-                document.getElementById('browserStuff').innerHTML = html;
-              });
-            win.close();
-          });
-
-          // var inAppRef = cordova.InAppBrowser.open("http://apache.org", "_blank", "location=yes");
-          // inAppRef.addEventListener("loadstop", function() {
-          //   inAppRef.executeScript({
-          //     code: "document.getElementsByTagName("html")[0].innerHTML"
-          //   }, function(html) {
-          //     alert(html);
+          var temp;
+          var libraryHTML;
+          var win = window.open( "http://www.salinaspubliclibrary.org/calendar/month?field_audience_tid=389&field_location_tid=All", "_blank","location=yes" );
+          // win.addEventListener( "loadstop", function() {
+          //   win.executeScript({
+          //     code: "document.body.innerHTML"
+          //   },
+          //   function(values) {
+          //       //the first element of the array contains the value returned by the script
+          //       var temp = values[0];
           //   });
           // });
 
+          // win.addEventListener( "loadstop", function() {
+          //     win.executeScript(
+          //         { code: "localStorage.setItem( 'localHTML', 'Hello' )" },
+          //         libraryHTML = function(){
+          //           win.executeScript({code:"localStorage.getItem('localHTML')"},
+          //         )
+          //
+          //         };
+          //         // function( values ) {
+          //         //     localStorage.setItem('innerHTML', values[ 0 ]);
+          //         // }
+          //     );
+          // });
+
+
+          win.addEventListener( "loadstop", function() {
+              win.executeScript({ code: "localStorage.setItem('innerHTML', 'hello')" });
+              libraryHTML = setInterval(function() {
+                  win.executeScript({ code: "console.log('hello')" }, function(values) {
+                      console.log(values[0]);
+                  });
+              }, 100);
+
+          });
+          win.addEventListener('exit', function() {
+              alert("test");
+          });
 
           </script>
 
